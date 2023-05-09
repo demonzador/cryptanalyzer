@@ -1,7 +1,6 @@
 package Controlers;
 
 import CLI.UserConnecter;
-import IO.Reader;
 
 public class RunSettingsManager {
     public RunSettingsManager() {
@@ -12,17 +11,12 @@ public class RunSettingsManager {
         if (args.length == 0) {
             new UserConnecter();
         } else if (args.length == 2 && args[0].equals("BRUTE_FORCE")) {
-            new Reader().read(args[1]);
-
+            new RunManager().runBruteForce(args[1]);
         } else if (args.length == 3) {
             if (args[0].equals("ENCRYPT")) {
-
-                new Reader().read(args[1]);
-                // call correct command
+                new RunManager().runEncrypt(new String[]{args[1], args[2]});
             } else if (args[0].equals("DECRYPT")) {
-                new Reader().read(args[1]);
-
-                // call correct command
+                new RunManager().runDecrypt(new String[]{args[1], args[2]});
             }
         }
     }

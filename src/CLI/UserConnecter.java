@@ -15,20 +15,18 @@ public class UserConnecter {
                     System.out.println("Enter filename and key");
                     command = console.nextLine();
                     String[] buff = command.split(" ");
-                    new RunManager().runEncryptFromConsole(buff);
+                    new RunManager().runEncrypt(buff);
                 }
                 case "d" -> {
                     System.out.println("Enter filename and key");
                     command = console.nextLine();
                     String[] buff = command.split(" ");
-                    new RunManager().runDecryptFromConsole(buff);
+                    new RunManager().runDecrypt(buff);
                 }
                 case "b" -> {
                     System.out.println("Enter filename");
                     command = console.nextLine();
-
-                    new Reader().read(command);
-                    System.out.println(command + "good1");// call correct command
+                    new RunManager().runBruteForce(command);
                 }
                 default -> System.out.println("ok");
             }
