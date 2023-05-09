@@ -16,7 +16,7 @@ public class UserConnecter {
                 case "d" -> {
                     System.out.println("Enter filename and key");
                     command = console.nextLine();
-                    System.out.println(command + "good");// call correct command
+                    System.out.println(command + "good very");// call correct command
                 }
                 case "b" -> {
                     System.out.println("Enter filename");
