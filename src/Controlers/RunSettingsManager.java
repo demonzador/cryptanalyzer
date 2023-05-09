@@ -14,7 +14,6 @@ public class RunSettingsManager {
         } else if (args.length == 2 && args[0].equals("BRUTE_FORCE")) {
             new Reader().read(args[1]);
 
-            // call correct command
         } else if (args.length == 3) {
             if (args[0].equals("ENCRYPT")) {
 

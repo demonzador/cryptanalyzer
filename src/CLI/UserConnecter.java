@@ -1,5 +1,6 @@
 package CLI;
 
+import Controlers.RunManager;
 import IO.Reader;
 
 import java.util.Scanner;
@@ -14,17 +15,13 @@ public class UserConnecter {
                     System.out.println("Enter filename and key");
                     command = console.nextLine();
                     String[] buff = command.split(" ");
-                    new Reader().read(buff[0]);
-
-                    System.out.println(command);// call correct command
+                    new RunManager().runEncryptFromConsole(buff);
                 }
                 case "d" -> {
                     System.out.println("Enter filename and key");
                     command = console.nextLine();
                     String[] buff = command.split(" ");
-                    new Reader().read(buff[0]);
-
-                    System.out.println(command + "good very");// call correct command
+                    new RunManager().runDecryptFromConsole(buff);
                 }
                 case "b" -> {
                     System.out.println("Enter filename");

@@ -22,7 +22,7 @@ public class Caesar {
         encrypt(source, (-1) * key);
     }
     
-    public void brutForce() {
+    public void brutForce(char[] source) {
         
     }
 
