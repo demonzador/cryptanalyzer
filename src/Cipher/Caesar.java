@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 public class Caesar {
 
-    public void encrypt(char[] source, int key) {
+    public char[] encrypt(char[] source, int key) {
         ArrayList<Character> alphabet = getAlphabet();
         ArrayList<Character> sourceList = arrayToList(source);
         int sizeOfAlphabet = alphabet.size();
@@ -28,11 +28,11 @@ public class Caesar {
                 result[i] = source[i];
             }
         }
-        System.out.println(result);
+        return result;
     }
 
-    public void decrypt(char[] source, int key) {
-        encrypt(source, (-1) * key);
+    public char[] decrypt(char[] source, int key) {
+        return encrypt(source, (-1) * key);
     }
 
     public void brutForce(char[] source) {
