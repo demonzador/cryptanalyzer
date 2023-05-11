@@ -17,7 +17,6 @@ public class Writer {
         }
         newFileNameBuilder.append("[ENCRYPTED].");
         newFileNameBuilder.append(fileNameParts[fileNameParts.length - 1]);
-        System.out.println(newFileNameBuilder);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()))) {
             writer.write(source);
             writer.flush();
@@ -35,7 +34,6 @@ public class Writer {
         }
         newFileNameBuilder.append("[DECRYPTED].");
         newFileNameBuilder.append(fileNameParts[fileNameParts.length - 1]);
-        System.out.println(newFileNameBuilder);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()))) {
             writer.write(source);
             writer.flush();
@@ -51,11 +49,10 @@ public class Writer {
         for (int i = 0; i < fileNameParts.length - 1; i++) {
             newFileNameBuilder.append(fileNameParts[i]);
         }
-        newFileNameBuilder.append("[BrutForced (key : ");
+        newFileNameBuilder.append("[BrutForced (key = ");
         newFileNameBuilder.append(key);
         newFileNameBuilder.append(")].");
         newFileNameBuilder.append(fileNameParts[fileNameParts.length - 1]);
-        System.out.println(newFileNameBuilder);
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()))) {
             writer.write(source);
             writer.flush();

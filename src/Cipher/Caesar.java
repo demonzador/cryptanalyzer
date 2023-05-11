@@ -49,10 +49,9 @@ public class Caesar {
 
     public ArrayList<Character> getAlphabet() {
         AlphabetENG[] values = AlphabetENG.values();
-        final int length = values.length;
         ArrayList<Character> alphabet = new ArrayList<>();
-        for (int i = 0; i < length; i++) {
-            Character character = values[i].ordinal();
+        for (AlphabetENG value : values) {
+            Character character = value.ordinal();
             alphabet.add(character);
         }
         return alphabet;
