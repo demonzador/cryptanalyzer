@@ -35,8 +35,8 @@ public class Caesar {
         return encrypt(source, (-1) * key);
     }
 
-    public void brutForce(char[] source) {
-        System.out.println(source);
+    public char[] brutForce(char[] source) {
+        return source;
     }
 
     public ArrayList<Character> arrayToList(char[] source) {

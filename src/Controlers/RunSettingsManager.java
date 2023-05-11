@@ -1,6 +1,6 @@
 package Controlers;
 
-import CLI.UserConnecter;
+import CLI.UserConnector;
 
 public class RunSettingsManager {
     public RunSettingsManager() {
@@ -9,7 +9,7 @@ public class RunSettingsManager {
 
     public void run(String[] args) {
         if (args.length == 0) {
-            new UserConnecter();
+            new UserConnector();
         } else if (args.length == 2 && args[0].equals("BRUTE_FORCE")) {
             new RunManager().runBruteForce(args[1]);
         } else if (args.length == 3) {
