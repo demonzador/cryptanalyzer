@@ -4,6 +4,9 @@ import Cipher.Caesar;
 import IO.Reader;
 import IO.Writer;
 
+import java.util.HashMap;
+import java.util.Set;
+
 public class RunManager {
     public RunManager() {
 
@@ -27,8 +30,15 @@ public class RunManager {
 
     public void runBruteForce(String fileName) {
         char[] read = new Reader().read(fileName);
-        char[] brutted = new Caesar().brutForce(read);
-        new Writer().writeBruteForce(brutted,fileName,2);
-        System.out.println("you need to add parameter key in RunManager.runBruteForce");
+        HashMap<Integer, char[]> brutted = new Caesar().brutForce(read);
+
+        Set<Integer> keySet = brutted.keySet();
+        int[] keys = new int[keySet.size()];
+        for (int i : keySet) {
+            keys[0] = i;
+        }
+        char[] source = brutted.get(keys[0]);
+
+        new Writer().writeBruteForce(source, fileName, keys[0]);
     }
 }
