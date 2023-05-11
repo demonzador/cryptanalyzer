@@ -26,7 +26,7 @@ public class Reader {
         return linesToCharArray(lines);
     }
 
-    public char[] linesToCharArray(ArrayList<String> lines) {
+    private char[] linesToCharArray(ArrayList<String> lines) {
         ArrayList<Character> characters = new ArrayList<>();
         for (String s : lines) {
             char[] buff = s.toCharArray();

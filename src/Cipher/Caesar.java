@@ -50,7 +50,7 @@ public class Caesar {
         return result;
     }
 
-    public char[] getMostPopularChar(HashMap<Double, Character> source) {
+    private char[] getMostPopularChar(HashMap<Double, Character> source) {
         char[] result = new char[10];
         ArrayList<Double> freq = new ArrayList<>(source.keySet());
         Collections.sort(freq);
@@ -62,7 +62,7 @@ public class Caesar {
         return result;
     }
 
-    public ArrayList<Character> arrayToList(char[] source) {
+    private ArrayList<Character> arrayToList(char[] source) {
         ArrayList<Character> result = new ArrayList<>();
         for (char c : source) {
             result.add(c);
@@ -70,7 +70,7 @@ public class Caesar {
         return result;
     }
 
-    public ArrayList<Character> getAlphabet() {
+    private ArrayList<Character> getAlphabet() {
         AlphabetENG[] values = AlphabetENG.values();
         ArrayList<Character> alphabet = new ArrayList<>();
         for (AlphabetENG value : values) {
@@ -80,7 +80,7 @@ public class Caesar {
         return alphabet;
     }
 
-    public int getKey(HashMap<Double, Character> source1, HashMap<Double, Character> source2) {
+    private int getKey(HashMap<Double, Character> source1, HashMap<Double, Character> source2) {
         int result = 0;
         char[] mostPopularCharAlphabet = getMostPopularChar(source1);
         char[] mostPopularCharSource = getMostPopularChar(source2);
@@ -120,7 +120,7 @@ public class Caesar {
         return result;
     }
 
-    public HashMap<Double, Character> getFreqFromSource(char[] source) {
+    private HashMap<Double, Character> getFreqFromSource(char[] source) {
         HashMap<Character, Integer> counter = new HashMap<>();
         for (char c : source) {
             if (counter.containsKey(c)) {
