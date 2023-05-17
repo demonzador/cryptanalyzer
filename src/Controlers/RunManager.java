@@ -4,6 +4,7 @@ import Cipher.Caesar;
 import IO.Reader;
 import IO.Writer;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.Set;
 
@@ -12,7 +13,7 @@ public class RunManager {
 
     }
 
-    public void runEncrypt(String[] buff) {
+    public void runEncrypt(String[] buff) throws IOException {
         String fileName = buff[0];
         char[] read = new Reader().read(fileName);
         int key = Integer.parseInt(buff[1]);
@@ -20,7 +21,7 @@ public class RunManager {
         new Writer().writeEncrypt(encrypted, fileName);
     }
 
-    public void runDecrypt(String[] buff) {
+    public void runDecrypt(String[] buff) throws IOException {
         String fileName = buff[0];
         char[] read = new Reader().read(fileName);
         int key = Integer.parseInt(buff[1]);
@@ -28,7 +29,7 @@ public class RunManager {
         new Writer().writeDecrypt(decrypted, fileName);
     }
 
-    public void runBruteForce(String fileName) {
+    public void runBruteForce(String fileName) throws IOException {
         char[] read = new Reader().read(fileName);
         HashMap<Integer, char[]> brutted = new Caesar().brutForce(read);
 
