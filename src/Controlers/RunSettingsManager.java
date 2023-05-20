@@ -21,7 +21,7 @@ public class RunSettingsManager {
                 } else if (args[0].equals("DECRYPT")) {
                     new RunManager().runDecrypt(new String[]{args[1], args[2]});
                 }
-            }
+            } else System.out.println("Invalid command entered, please try again.");
         } catch (IOException e) {
             System.out.println("Invalid file name entered, please try again.");
         }
