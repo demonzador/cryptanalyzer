@@ -11,17 +11,17 @@ public class Caesar {
     public char[] encrypt(char[] source, int key) {
         ArrayList<Character> alphabet = getAlphabet();
         ArrayList<Character> sourceList = arrayToList(source);
-        int sizeOfAlphabet = alphabet.size();
+        int alphabetSize = alphabet.size();
         int sourceLength = source.length;
         char[] result = new char[sourceLength];
-        key %= sizeOfAlphabet;
+        key %= alphabetSize;
         for (int i = 0; i < source.length; i++) {
             int positionInAlphabet = alphabet.indexOf(sourceList.get(i)) + key;
-            while ((positionInAlphabet) >= sizeOfAlphabet) {
-                positionInAlphabet -= sizeOfAlphabet;
+            while ((positionInAlphabet) >= alphabetSize) {
+                positionInAlphabet -= alphabetSize;
             }
             while ((positionInAlphabet) < 0) {
-                positionInAlphabet += sizeOfAlphabet;
+                positionInAlphabet += alphabetSize;
             }
             if (alphabet.contains(source[i])) {
 
@@ -38,35 +38,14 @@ public class Caesar {
     }
 
     public HashMap<Integer, char[]> brutForce(char[] source) {
-        ArrayList<Character> alphabet = getAlphabet();
         HashMap<Integer, char[]> result = new HashMap<>();
+
         HashMap<Double, Character> frequenciesAlphabet = new AlphabetENGWithFrequencies().getFrequencies();
         HashMap<Double, Character> frequenciesSource = getFreqFromSource(source);
 
         int key = getKey(frequenciesAlphabet, frequenciesSource);
-        if (key < 0) key += alphabet.size();
 
         result.put(key, decrypt(source, key));
-        return result;
-    }
-
-    private char[] getMostPopularChar(HashMap<Double, Character> source) {
-        char[] result = new char[10];
-        ArrayList<Double> freq = new ArrayList<>(source.keySet());
-        Collections.sort(freq);
-        int counter = 0;
-        for (int i = freq.size() - 10; counter < 10; i++) {
-            result[counter] = source.get(freq.get(i));
-            counter++;
-        }
-        return result;
-    }
-
-    private ArrayList<Character> arrayToList(char[] source) {
-        ArrayList<Character> result = new ArrayList<>();
-        for (char c : source) {
-            result.add(c);
-        }
         return result;
     }
 
@@ -80,42 +59,10 @@ public class Caesar {
         return alphabet;
     }
 
-    private int getKey(HashMap<Double, Character> source1, HashMap<Double, Character> source2) {
-        int result = 0;
-        char[] mostPopularCharAlphabet = getMostPopularChar(source1);
-        char[] mostPopularCharSource = getMostPopularChar(source2);
-        int[] dif = new int[10];
-
-        ArrayList<Character> alphabet = getAlphabet();
-        for (int i = 0; i < 10; i++) {
-            dif[i] = alphabet.indexOf(mostPopularCharSource[i]) - alphabet.indexOf(mostPopularCharAlphabet[i]);
-        }
-
-        for (int i = 0; i < dif.length; i++) {
-            int value = dif[i];
-            if (value < 0) {
-                dif[i] = value + alphabet.size();
-            } else if (value >= alphabet.size()) {
-                dif[i] = value - alphabet.size();
-            }
-        }
-
-        HashMap<Integer, Integer> integers = new HashMap<>();
-        for (int i : dif) {
-            if (integers.containsKey(i)) {
-                int value = integers.get(i);
-                integers.replace(i, ++value);
-            } else integers.put(i, 1);
-        }
-
-        int max = Integer.MIN_VALUE;
-        for (int i : integers.values()) {
-            max = Math.max(i, max);
-        }
-        for (var entry : integers.entrySet()) {
-            if (entry.getValue() == max) {
-                result = entry.getKey();
-            }
+    private ArrayList<Character> arrayToList(char[] source) {
+        ArrayList<Character> result = new ArrayList<>();
+        for (char c : source) {
+            result.add(c);
         }
         return result;
     }
@@ -141,6 +88,61 @@ public class Caesar {
         for (char c : counter.keySet()) {
             key = ((double) counter.get(c) / countSum);
             result.put(key, c);
+        }
+        return result;
+    }
+
+    private int getKey(HashMap<Double, Character> source1, HashMap<Double, Character> source2) {
+        char[] mostPopularCharAlphabet = getMostPopularChar(source1);
+        char[] mostPopularCharSource = getMostPopularChar(source2);
+        int[] dif = new int[10];
+
+        ArrayList<Character> alphabet = getAlphabet();
+        for (int i = 0; i < 10; i++) {
+            dif[i] = alphabet.indexOf(mostPopularCharSource[i]) - alphabet.indexOf(mostPopularCharAlphabet[i]);
+        }
+
+        for (int i = 0; i < dif.length; i++) {
+            int value = dif[i];
+            if (value < 0) {
+                dif[i] = value + alphabet.size();
+            } else if (value >= alphabet.size()) {
+                dif[i] = value - alphabet.size();
+            }
+        }
+        return getKeyWithMaxFrequencies(dif);
+    }
+
+    private char[] getMostPopularChar(HashMap<Double, Character> source) {
+        char[] result = new char[10];
+        ArrayList<Double> freq = new ArrayList<>(source.keySet());
+        Collections.sort(freq);
+        int counter = 0;
+        for (int i = freq.size() - 10; counter < 10; i++) {
+            result[counter] = source.get(freq.get(i));
+            counter++;
+        }
+        return result;
+    }
+
+    private int getKeyWithMaxFrequencies(int[] source) {
+        int result = 0;
+        HashMap<Integer, Integer> integers = new HashMap<>();
+        for (int i : source) {
+            if (integers.containsKey(i)) {
+                int value = integers.get(i);
+                integers.replace(i, ++value);
+            } else integers.put(i, 1);
+        }
+
+        int max = Integer.MIN_VALUE;
+        for (int i : integers.values()) {
+            max = Math.max(i, max);
+        }
+        for (var entry : integers.entrySet()) {
+            if (entry.getValue() == max) {
+                result = entry.getKey();
+            }
         }
         return result;
     }

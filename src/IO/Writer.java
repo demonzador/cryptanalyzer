@@ -9,7 +9,7 @@ public class Writer {
 
     }
 
-    public void writeEncrypt(char[] source, String oldFileName) {
+    public void writeEncrypt(char[] source, String oldFileName) throws IOException {
         String[] fileNameParts = oldFileName.split("\\.");
         StringBuilder newFileNameBuilder = new StringBuilder();
         for (int i = 0; i < fileNameParts.length - 1; i++) {
@@ -17,16 +17,13 @@ public class Writer {
         }
         newFileNameBuilder.append("[ENCRYPTED].");
         newFileNameBuilder.append(fileNameParts[fileNameParts.length - 1]);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()))) {
-            writer.write(source);
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("oops");
-        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()));
+        writer.write(source);
+        writer.flush();
+
     }
 
-    public void writeDecrypt(char[] source, String oldFileName) {
+    public void writeDecrypt(char[] source, String oldFileName) throws IOException {
         String[] fileNameParts = oldFileName.split("\\.");
         StringBuilder newFileNameBuilder = new StringBuilder();
         for (int i = 0; i < fileNameParts.length - 1; i++) {
@@ -34,16 +31,12 @@ public class Writer {
         }
         newFileNameBuilder.append("[DECRYPTED].");
         newFileNameBuilder.append(fileNameParts[fileNameParts.length - 1]);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()))) {
-            writer.write(source);
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("oops");
-        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()));
+        writer.write(source);
+        writer.flush();
     }
 
-    public void writeBruteForce(char[] source, String oldFileName, int key) {
+    public void writeBruteForce(char[] source, String oldFileName, int key) throws IOException {
         String[] fileNameParts = oldFileName.split("\\.");
         StringBuilder newFileNameBuilder = new StringBuilder();
         for (int i = 0; i < fileNameParts.length - 1; i++) {
@@ -53,12 +46,8 @@ public class Writer {
         newFileNameBuilder.append(key);
         newFileNameBuilder.append(")].");
         newFileNameBuilder.append(fileNameParts[fileNameParts.length - 1]);
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()))) {
-            writer.write(source);
-            writer.flush();
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("oops");
-        }
+        BufferedWriter writer = new BufferedWriter(new FileWriter(newFileNameBuilder.toString()));
+        writer.write(source);
+        writer.flush();
     }
 }

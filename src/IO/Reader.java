@@ -7,22 +7,19 @@ import java.util.ArrayList;
 
 
 public class Reader {
-    public Reader(){
+    public Reader() {
 
     }
 
-    public char[] read(String path) {
+    public char[] read(String path) throws IOException {
         ArrayList<String> lines = new ArrayList<>();
-        try (BufferedReader reader = new BufferedReader(new FileReader(path))) {
-            while (reader.ready()) {
-                String line = reader.readLine();
-                lines.add(line);
-                lines.add("\n");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("File not found");
+        BufferedReader reader = new BufferedReader(new FileReader(path));
+        while (reader.ready()) {
+            String line = reader.readLine();
+            lines.add(line);
+            lines.add("\n");
         }
+
         return linesToCharArray(lines);
     }
 
