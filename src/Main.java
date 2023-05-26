@@ -6,4 +6,3 @@ public class Main {
         new RunSettingsManager().run(args);
     }
 }
-//вапаваро
