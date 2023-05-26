@@ -1,6 +1,15 @@
 package AlphabetENG;
 
+// this class contains only immutable symbols of alphabet and a little bit of special symbols
+// and some possibility for work with alphabet
 public class AlphabetENG {
+    private final char value;
+
+    // constructor for alphabet
+    private AlphabetENG(char value) {
+        this.value = value;
+    }
+
     private static final AlphabetENG A = new AlphabetENG('A');
     private static final AlphabetENG B = new AlphabetENG('B');
     private static final AlphabetENG C = new AlphabetENG('C');
@@ -63,25 +72,19 @@ public class AlphabetENG {
     private static final AlphabetENG EXCLAMATION_MARK = new AlphabetENG('!');
     private static final AlphabetENG QUESTION_MARK = new AlphabetENG('?');
     private static final AlphabetENG SPACE = new AlphabetENG(' ');
+
+    // method give to user get values of alphabet
     private static final AlphabetENG[] values = {A, B, C, D, E, POINT, F, G, H, I, J, COMMA, K, L, M, N, O, QUOTATION_MARK, P, Q, R, S, T,
             BACKSLASH, U, V, W, X, Y, SLASH, Z, a, b, c, d, COLON, e, f, g, h, i, SEMICOLON, j, k, l, m, n, EXCLAMATION_MARK, o, p, q, r, s,
             QUESTION_MARK, t, u, v, w, x, y, SPACE, z};
-    private final char value;
 
-    private AlphabetENG(char value) {
-        this.value = value;
-    }
-
+    // using for get the value of symbol
     public char ordinal() {
         return this.value;
     }
 
+    // using for get the all values from alphabet
     public static AlphabetENG[] values() {
         return values;
-    }
-
-    @Override
-    public String toString() {
-        return String.valueOf(this.value);
     }
 }
