@@ -5,11 +5,14 @@ import Controlers.RunManager;
 import java.io.IOException;
 import java.util.Scanner;
 
+// this class for work with program using the console
 public class UserConnector {
     public UserConnector() {
+        // request what user want
         System.out.println("Hello, chose correct action\n [e] encrypt;  [d] decrypt;  [b] brute force;");
         Scanner console = new Scanner(System.in);
         String command = console.nextLine();
+        //choose correct option
         switch (command) {
             case "e", "E" -> {
                 System.out.println("Enter filepath and key in format <filepath> <key>");

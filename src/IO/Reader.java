@@ -5,12 +5,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 
-
+// class for write source files
 public class Reader {
     public Reader() {
 
     }
 
+    // method reads by lines so as o save lines format
     public char[] read(String path) throws IOException {
         ArrayList<String> lines = new ArrayList<>();
         BufferedReader reader = new BufferedReader(new FileReader(path));
@@ -23,6 +24,7 @@ public class Reader {
         return linesToCharArray(lines);
     }
 
+    // method for change arraylist with lines to a single array with chars
     private char[] linesToCharArray(ArrayList<String> lines) {
         ArrayList<Character> characters = new ArrayList<>();
         for (String s : lines) {

@@ -2,6 +2,7 @@ package AlphabetENG;
 
 import java.util.HashMap;
 
+//class for saving frequencies of symbols
 public class AlphabetENGWithFrequencies {
     public AlphabetENGWithFrequencies() {
 

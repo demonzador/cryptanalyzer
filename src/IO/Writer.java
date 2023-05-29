@@ -4,6 +4,8 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+// class for writing result of the work program
+// he also added correct mark to name of file and key for hacked texts
 public class Writer {
     public Writer() {
 
